@@ -1,0 +1,35 @@
+{
+  "name": "windows-kill",
+  "version": "0.1.0",
+  "description": "Enhance node's process.kill to support signals in Windows",
+  "main": "lib/index.js",
+  "scripts": {
+    "start-dev": "nodemon --config nodemon.config.json ./development/index.js -L",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "native_build": "node-gyp rebuild",
+    "native_build_dev": "node-gyp configure rebuild --nodedir=F:\\IDM\\Compressed\\node-v8.9.4\\ --debug",
+    "install": "node scripts/install.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alirdn/node-windows-kill.git"
+  },
+  "keywords": [
+    "windows",
+    "kill",
+    "signal"
+  ],
+  "author": "alirdn",
+  "license": "MIT",
+  "gypfile": true,
+  "bugs": {
+    "url": "https://github.com/alirdn/node-windows-kill/issues"
+  },
+  "homepage": "https://github.com/alirdn/node-windows-kill#readme",
+  "dependencies": {
+    "nan": "^2.8.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.15.0"
+  }
+}
