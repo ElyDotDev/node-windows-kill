@@ -2,7 +2,7 @@ var os = require('os');
 var cp = require('child_process');
 
 if (os.platform() === 'win32') {
-    var result = cp.spawnSync('npm.cmd', ['run', 'native_build'], {
+    var result = cp.spawnSync('npm.cmd', ['run', 'native-build'], {
         stdio: 'inherit'
     });
 

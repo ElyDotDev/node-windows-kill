@@ -4,11 +4,11 @@
   "description": "Enhance node's process.kill to support signals in Windows",
   "main": "lib/index.js",
   "scripts": {
-    "start-dev": "nodemon --config nodemon.config.json ./development/index.js -L",
+    "install": "node scripts/install.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "native_build": "node-gyp rebuild",
-    "native_build_dev": "node-gyp configure rebuild --nodedir=F:\\IDM\\Compressed\\node-v8.9.4\\ --debug",
-    "install": "node scripts/install.js"
+    "native-build": "node-gyp rebuild",
+    "native-build-dev": "node-gyp configure rebuild --nodedir=F:\\IDM\\Compressed\\node-v8.9.4\\ --debug",
+    "start-dev": "nodemon --config nodemon.config.json ./development/index.js -L"
   },
   "repository": {
     "type": "git",
