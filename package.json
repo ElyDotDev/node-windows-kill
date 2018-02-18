@@ -1,8 +1,38 @@
 {
   "name": "windows-kill",
   "version": "0.1.0",
-  "description": "Enhance node's process.kill to support signals in Windows",
+  "description": "Sending signals on Windows",
+  "keywords": [
+    "windows",
+    "kill",
+    "signal",
+    "process",
+    "sigbreak",
+    "sigint"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/alirdn/node-windows-kill#readme",
+  "bugs": {
+    "url": "https://github.com/alirdn/node-windows-kill/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alirdn/node-windows-kill.git"
+  },
+  "author": {
+    "name": "Alireza Dabiri Nejad / alirdn",
+    "email": "alireza.dabirinejad@live.com",
+    "url": "http://allii.ir/"
+  },
+  "contributors": [
+    {
+      "name": "Alireza Dabiri Nejad / alirdn",
+      "email": "alireza.dabirinejad@live.com",
+      "url": "http://allii.ir/"
+    }
+  ],
   "main": "lib/index.js",
+  "gypfile": true,
   "scripts": {
     "install": "node scripts/install.js",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -10,22 +40,6 @@
     "native-build-dev": "node-gyp configure rebuild --nodedir=F:\\IDM\\Compressed\\node-v8.9.4\\ --debug",
     "start-dev": "nodemon --config nodemon.config.json ./development/index.js -L"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/alirdn/node-windows-kill.git"
-  },
-  "keywords": [
-    "windows",
-    "kill",
-    "signal"
-  ],
-  "author": "alirdn",
-  "license": "MIT",
-  "gypfile": true,
-  "bugs": {
-    "url": "https://github.com/alirdn/node-windows-kill/issues"
-  },
-  "homepage": "https://github.com/alirdn/node-windows-kill#readme",
   "dependencies": {
     "nan": "^2.8.0"
   },
