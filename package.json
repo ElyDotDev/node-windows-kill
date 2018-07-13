@@ -35,7 +35,7 @@
   "gypfile": true,
   "scripts": {
     "install": "node scripts/install.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tape test/*.test.js && nyc report --reporter=lcov",
     "native-build": "node-gyp rebuild",
     "native-build-dev": "node-gyp configure rebuild --nodedir=F:\\IDM\\Compressed\\node-v8.9.4\\ --debug",
     "start-dev": "nodemon --config nodemon.config.json ./development/index.js -L"
@@ -44,6 +44,10 @@
     "nan": "^2.8.0"
   },
   "devDependencies": {
-    "nodemon": "^1.15.0"
+    "istanbul": "^0.4.5",
+    "nodemon": "^1.15.0",
+    "nyc": "^11.4.1",
+    "process-list": "^1.2.2",
+    "tape": "^4.8.0"
   }
 }
