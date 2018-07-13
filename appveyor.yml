@@ -1,0 +1,45 @@
+environment:
+  NODE_PRE_GYP_GITHUB_TOKEN:
+    secure: I1J9L1ylzwS2WgQh67uUdYifKjCLGL7CibDFxpUgEjT9sNBsyjpljByCQw6jHt2F
+  matrix:
+    - nodejs_version: "10"
+    - nodejs_version: "9"
+    - nodejs_version: "8"
+    - nodejs_version: "6"
+    - nodejs_version: "4"
+
+platform:
+  - x64
+  - x86
+
+os: Visual Studio 2015
+
+install:
+  - ps: Install-Product node $env:nodejs_version $env:platform
+  - npm i npm@5 -g
+  - set PATH=%APPDATA%\npm;%PATH%
+
+build_script:
+  - npm install
+
+test_script:
+  - node --version
+  - npm --version
+  - npm test
+
+after_test:
+  - npm run coverage
+
+deploy_script:
+  - ps: |
+      if ($env:APPVEYOR_REPO_COMMIT_MESSAGE.ToLower().Contains('[publish binary]'))
+      {
+        npm run node-pre-gyp-package
+        npm run node-pre-gyp-github-release
+      }
+
+artifacts:
+  - path: .\build\**\windows-kill.node
+
+skip_tags: true
+version: "0.1.{build}"
