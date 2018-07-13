@@ -3,6 +3,7 @@ other/
 build/
 development/
 .vscode/c_cpp_properties.json
+nodemon.config.json
 
 # Visual studio
 *.suo
