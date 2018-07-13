@@ -1,5 +1,6 @@
 # node-windows-kill
 [![Build Status](https://travis-ci.org/alirdn/node-windows-kill.svg?branch=master)](https://travis-ci.org/alirdn/node-windows-kill)
+[![codecov](https://codecov.io/gh/alirdn/node-windows-kill/branch/master/graph/badge.svg)](https://codecov.io/gh/alirdn/node-windows-kill)
 
 Enhance node's process.kill to support signals in Windows
 
