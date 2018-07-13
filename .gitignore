@@ -5,6 +5,10 @@ development/
 .vscode/c_cpp_properties.json
 nodemon.config.json
 
+# lockfiles
+yarn.lock
+package-lock.json
+
 # Visual studio
 *.suo
 *.VC.db
