@@ -1,0 +1,15 @@
+language: node_js
+node_js:
+  - "10"
+  - "8"
+  - "6"
+  - "4"
+os:
+  - linux
+  - osx
+install:
+  - npm install
+script:
+  - npm run test-non-windows
+notifications:
+  email: false
