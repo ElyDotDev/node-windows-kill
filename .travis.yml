@@ -11,5 +11,7 @@ install:
   - npm install
 script:
   - npm run test-non-windows
+after_success:
+  - npm run coverage
 notifications:
   email: false

@@ -37,8 +37,9 @@
     "install": "node scripts/install.js",
     "install-native": "node-pre-gyp install --fallback-to-build",
     "node-pre-gyp-github-release": "node-pre-gyp-github publish --release",
-    "test": "tape test/*.windows.test.js",
-    "test-non-windows": "tape test/*.non-windows.test.js"
+    "test": "nyc tape test/*.windows.test.js",
+    "test-non-windows": "nyc tape test/*.non-windows.test.js",
+    "coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "binary": {
     "module_name": "windows-kill",
@@ -54,6 +55,7 @@
     "node-pre-gyp": "=0.9.1"
   },
   "devDependencies": {
+    "codecov": "^3.0.4",
     "istanbul": "^0.4.5",
     "node-pre-gyp-github": "^1.3.1",
     "nyc": "^11.9.0",
