@@ -1,4 +1,6 @@
 # node-windows-kill
+[![Build Status](https://travis-ci.org/alirdn/node-windows-kill.svg?branch=master)](https://travis-ci.org/alirdn/node-windows-kill)
+
 Enhance node's process.kill to support signals in Windows
 
 ## Installation
