@@ -28,7 +28,7 @@ test_script:
   - npm test
 
 after_test:
-  - npm run coverage
+  - npm run coverage-codecov
 
 deploy_script:
   - ps: |

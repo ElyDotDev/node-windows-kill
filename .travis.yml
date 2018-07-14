@@ -1,17 +1,25 @@
 language: node_js
+
 node_js:
   - "10"
   - "8"
   - "6"
   - "4"
+
 os:
   - linux
   - osx
+
 install:
   - npm install
+
 script:
+  - node --version
+  - npm --version
   - npm run test-non-windows
+
 after_success:
-  - npm run coverage
+  - npm run coverage-codecov
+
 notifications:
   email: false
