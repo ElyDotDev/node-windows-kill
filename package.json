@@ -42,7 +42,7 @@
     "test-non-windows": "nyc ava test/*.non-windows.test.js",
     "test-dev": "nyc ava --watch --verbose",
     "coverage-html": "nyc report --reporter=html",
-    "coverage-codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
+    "coverage-codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t b50db377-45c9-4aa6-a8d9-ea0880e08f97"
   },
   "binary": {
     "module_name": "windows-kill",
@@ -64,7 +64,7 @@
     "node-pre-gyp": "=0.9.1"
   },
   "devDependencies": {
-    "ava": "1.0.0-beta.3",
+    "ava": "^0.25.0",
     "codecov": "^3.0.4",
     "istanbul": "^0.4.5",
     "node-pre-gyp-github": "^1.3.1",
