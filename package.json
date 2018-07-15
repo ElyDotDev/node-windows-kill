@@ -42,7 +42,7 @@
     "test-non-windows": "nyc ava test/*.non-windows.test.js",
     "test-dev": "nyc ava --watch --verbose",
     "coverage-html": "nyc report --reporter=html",
-    "coverage-codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov -t b50db377-45c9-4aa6-a8d9-ea0880e08f97"
+    "coverage-codecov": "nyc report --reporter=text-lcov > coverage.lcov && codecov"
   },
   "binary": {
     "module_name": "windows-kill",
