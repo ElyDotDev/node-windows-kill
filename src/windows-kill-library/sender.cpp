@@ -6,6 +6,9 @@
 
 namespace WindowsKillLibrary {
 
+	using std::string;
+	using std::invalid_argument;
+
 	/*
 		TODO: According to the test, the ctrl routine address for both of CTRL_C_EVENT and CTRL_BREAK_EVENT are same.
 		So maybe it's not necessary to have separated ctr routine for each of events.
@@ -39,5 +42,25 @@ namespace WindowsKillLibrary {
 
 		the_remote_process.open();
 		the_remote_process.startRemoteThread();
+	}
+
+	void Sender::warmUp(const string& which) {
+		string all("ALL");
+		string sigInt("SIGINT");
+		string sigBreak("SIGBREAK");
+
+		if (which.compare(all) == 0) {
+			ctrl_c_routine.findAddress();
+			ctrl_break_routine.findAddress();
+		}
+		else if (which.compare(sigInt) == 0) {
+			ctrl_c_routine.findAddress();
+		}
+		else if (which.compare(sigBreak) == 0) {
+			ctrl_break_routine.findAddress();
+		}
+		else {
+			throw invalid_argument(string("Invalid which argument."));
+		}
 	}
 }
