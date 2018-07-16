@@ -1,0 +1,13 @@
+.nyc_output/
+.vscode/
+build/
+coverage/
+development/
+lib/binding/windows-kill.node
+other/
+test/
+.editorconfig
+.travis.yml
+appveyor.yml
+CONTRIBUTING.md
+nodemon.config.json
