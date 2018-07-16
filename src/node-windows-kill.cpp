@@ -7,7 +7,7 @@ using WindowsKillLibrary::warmUp;
 using WindowsKillLibrary::SIGNAL_TYPE_CTRL_C;
 using WindowsKillLibrary::SIGNAL_TYPE_CTRL_BREAK;
 
-#define NODEWINDOWSKILL_VERSION "0.1.0"
+#define NODEWINDOWSKILL_VERSION "0.3.0"
 
 void send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 	if (info.Length() < 2) {
