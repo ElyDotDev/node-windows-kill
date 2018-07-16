@@ -3,12 +3,13 @@
 #include "windows-kill-library.h"
 
 using WindowsKillLibrary::sendSignal;
+using WindowsKillLibrary::warmUp;
 using WindowsKillLibrary::SIGNAL_TYPE_CTRL_C;
 using WindowsKillLibrary::SIGNAL_TYPE_CTRL_BREAK;
 
 #define NODEWINDOWSKILL_VERSION "0.1.0"
 
-void Send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+void send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 	if (info.Length() < 2) {
 		Nan::ThrowTypeError("Wrong number of arguments");
 		return;
@@ -50,9 +51,27 @@ void Send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 	}
 }
 
+void warmUp(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+    try {
+        warmUp();
+    }
+    catch (const std::invalid_argument& exception) {
+		if (strcmp(exception.what(), "Invalid which argument.") == 0) {
+			info.GetReturnValue().Set(Nan::New<v8::String>("Invalid which argument.").ToLocalChecked());
+			return;
+		}
+		info.GetReturnValue().Set(Nan::New<v8::String>("ESYS").ToLocalChecked());
+	}
+	catch (std::exception) {
+		info.GetReturnValue().Set(Nan::New<v8::String>("ESYS").ToLocalChecked());
+	}
+}
+
 void Init(v8::Local<v8::Object> exports) {
 	exports->Set(Nan::New("send").ToLocalChecked(),
-		Nan::New<v8::FunctionTemplate>(Send)->GetFunction());
+		Nan::New<v8::FunctionTemplate>(send)->GetFunction());
+    exports->Set(Nan::New("warmUp").ToLocalChecked(),
+		Nan::New<v8::FunctionTemplate>(warmUp)->GetFunction());
 }
 
 NODE_MODULE(windowskill, Init)
