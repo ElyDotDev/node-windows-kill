@@ -23,11 +23,13 @@ To read a detailed info please visit [windows-kill-library Readme](https://githu
 ### Limitations
 To send the signal, **windows-kill** at first send a same signal to the process that is calling it, to find a thread address. Then the founded address is used to send the real signal. Because of this, the process that is sending the signal will get the same signal too. But windows-kill register a signal handle during this procedure, so the process will not terminate. But if the process that is sending signal has child process, or is a child process of another process, sending signal will trigger the signal handles in other process in the same process group. And the default behavior of Windows console/application in case of getting a ```SIGINT``` or ```SIGBREAK```, is to terminate.
 
-To **sum up**, If you are sending signal in node app that has child process (any kind of it), or is a child process of another process, the result is the termination of all the processes in the same process group, except the sender (well if it's a child process, because the master is terminated, it will terminate too).
+**sum up**: If you are sending signal in node app that has child process (any kind of it), or is a child process of another process, the result is the termination of all the processes in the same process group, except the sender (well if it's a child process, because the master is terminated, it will terminate too).
 
-**PS**: Currently there is no solution for this problem. But I'm working on it, to find a solution.
+**PS**: ~~Currently there is no solution for this problem. But I'm working on it, to find a solution.~~ Solutions for different scenarios added.
+* [Parent process only send signal](#parent-process-only-send-signal)
+* [Cluster master only send signal](#cluster-master-only-send-signal)
 
-**PS-1**: A solution for parent processes that wants to send signal (no way for child processes currently), is added. It's setting the ```warmUp: true``` option when first calling the windows-kill in parent, before any child processes creation.
+**PS-1**: ~~A solution for parent processes that wants to send signal (no way for child processes currently), is added. It's setting the ```warmUp: true``` option when first calling the windows-kill in parent, before any child processes creation.~~
 
 ## Usage
 ```windows-kill``` expose a function. Simply run the exposed function with/without the options. Thats it. It should be called before any usage of ```process.kill```.
@@ -112,7 +114,7 @@ process.kill(PID, SIGNAL);
 
 Warm-up, is one way to overcome the limitations. Setting this option, will make the windows-kill to find needed address, before any signal sending. As stated in limitations section, finding address will cause the processes that have child process, or is a child process, trigger the ```ctr-routine``` of all process group members, which means termination of all of them. But warm-up mechanism can be used, to fix the issue in parent process. By setting it to ```true```, before any child process creation, sending signal in future will use the save addresses and no need to find addresses again.
 
-To clear it up, see below example:
+##### Parent process only send signal
 
 ```javascript
 var options = {
@@ -129,7 +131,7 @@ windowsKill(PID, 'SIGINT');
 
 By running the above code, the cp1 child process will terminate. Because the ```SIGINT``` signal is sent for the first time, and the ```ctrl-routine``` address in not available. So windows-kill will try to find it, and trying to find it will trigger the ```SIGINT``` handler of cp1 child process, which lead to termination of cp1.
 
-To solve the issue, we can set the ```warmUp``` option true. Just remember, the initialization of windows-kill with warmUp option should be done before any child process creation. Like below:
+To solve the issue, we can set the ```warmUp``` option ```true```. Just remember, the initialization of windows-kill with warmUp option should be done before any child process creation. Like below:
 
 ```javascript
 var options = {
@@ -142,6 +144,29 @@ var windowsKill = require('windows-kill')(options);
 var cp1 = cp.spawn('node', ['cp.js']);
 
 windowsKill(PID, 'SIGINT');
+```
+##### Cluster master only send signal
+To avoid the termination of child processes (forks), you should use warmUp option in the master creation part.
+
+```javascript
+var cluster = require('cluster');
+var os = require('os');
+
+if (cluster.isMaster) {
+    /*
+        Initialize windows-kill here. Before and child process creation,
+        just in the master process code.
+    */
+    var windowsKill = require('windows-kill')({
+        "warmUp": true
+    });
+
+    for (let i = 0; i < os.cpus().length; i++) {
+        cluster.fork();
+    }
+} else {
+    /* Child Process code, that is not using windows-kill*/
+}
 ```
 
 ## Contributing
