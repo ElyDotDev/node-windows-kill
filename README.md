@@ -1,5 +1,5 @@
 # node-windows-kill
-[![Build Status](https://travis-ci.org/alirdn/node-windows-kill.svg?branch=master)](https://travis-ci.org/alirdn/node-windows-kill) [![Build status](https://ci.appveyor.com/api/projects/status/ckerpyyjyuxyoija?svg=true)](https://ci.appveyor.com/project/alirdn/node-windows-kill) [![codecov](https://codecov.io/gh/alirdn/node-windows-kill/branch/master/graph/badge.svg?)](https://codecov.io/gh/alirdn/node-windows-kill)
+[![NPM version](https://img.shields.io/npm/v/windows-kill.svg)](https://www.npmjs.com/package/windows-kill) [![Build Status](https://travis-ci.org/alirdn/node-windows-kill.svg?branch=master)](https://travis-ci.org/alirdn/node-windows-kill) [![Build status](https://ci.appveyor.com/api/projects/status/ckerpyyjyuxyoija?svg=true)](https://ci.appveyor.com/project/alirdn/node-windows-kill) [![codecov](https://codecov.io/gh/alirdn/node-windows-kill/branch/master/graph/badge.svg?)](https://codecov.io/gh/alirdn/node-windows-kill) [![Known Vulnerabilities](https://snyk.io/test/github/alirdn/node-windows-kill/badge.svg?targetFile=package.json)](https://snyk.io/test/github/alirdn/node-windows-kill?targetFile=package.json) [![GitHub license](https://img.shields.io/github/license/alirdn/node-windows-kill.svg)](https://github.com/alirdn/node-windows-kill/blob/master/LICENSE)
 
 Enhance node's ```process.kill``` to support signals in Windows
 
