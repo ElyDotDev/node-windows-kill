@@ -1,8 +1,7 @@
 var ava = require('ava');
+var test = ava.test;
 
 var WindowsKillClass = require('../lib/windows-kill-class');
-
-var test = ava.test;
 
 test('should export function when required', t => {
     t.is(typeof WindowsKillClass, 'function');
