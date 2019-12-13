@@ -10,6 +10,8 @@ using WindowsKillLibrary::SIGNAL_TYPE_CTRL_BREAK;
 #define NODEWINDOWSKILL_VERSION "0.3.0"
 
 void send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
+	v8::Local<v8::Context> context = info.GetIsolate()->GetCurrentContext();
+	
 	if (info.Length() < 2) {
 		Nan::ThrowTypeError("Wrong number of arguments");
 		return;
@@ -20,8 +22,8 @@ void send(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 		return;
 	}
 
-	DWORD signal_pid = (DWORD)info[0]->NumberValue();
-	DWORD signal_type = (DWORD)info[1]->NumberValue();
+	DWORD signal_pid = (DWORD)info[0]->NumberValue(context).FromJust();
+	DWORD signal_type = (DWORD)info[1]->NumberValue(context).FromJust();
 
 	try {
 		if (signal_type == 1) {
