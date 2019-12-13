@@ -70,10 +70,17 @@ void warmUp(const Nan::FunctionCallbackInfo<v8::Value>& info) {
 }
 
 void Init(v8::Local<v8::Object> exports) {
-	exports->Set(Nan::New("send").ToLocalChecked(),
-		Nan::New<v8::FunctionTemplate>(send)->GetFunction());
-    exports->Set(Nan::New("warmUp").ToLocalChecked(),
-		Nan::New<v8::FunctionTemplate>(warmUp)->GetFunction());
+	v8::Local<v8::Context> context = exports->CreationContext();
+	exports->Set(context,
+               Nan::New("send").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(send)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+	exports->Set(context,
+           Nan::New("warmUp").ToLocalChecked(),
+           Nan::New<v8::FunctionTemplate>(warmUp)
+               ->GetFunction(context)
+               .ToLocalChecked());
 }
 
 NODE_MODULE(windowskill, Init)
