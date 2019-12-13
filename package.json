@@ -61,8 +61,8 @@
     "node": ">=4.0.0"
   },
   "dependencies": {
-    "nan": "^2.10.0",
-    "node-pre-gyp": "=0.9.1"
+    "nan": "^2.14.0",
+    "node-pre-gyp": "=0.14.0"
   },
   "devDependencies": {
     "ava": "^0.25.0",
