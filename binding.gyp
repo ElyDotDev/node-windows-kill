@@ -5,7 +5,7 @@
             "product_extension": "node",
             "defines": [ "V8_DEPRECATION_WARNINGS=1" ],
             "include_dirs": [
-                "<!(node -e require('nan'))",
+                "<!@(node -p \"require('node-addon-api').include\")",
                 "src/windows-kill-library/"
             ],
             "libraries": [ "-lDbghelp" ],
